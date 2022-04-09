@@ -9,29 +9,6 @@ class TextSectionWithIcon extends StatelessWidget {
 
   TextSectionWithIcon(this.iconCode, this._title, this._body);
 
-  /* @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(
-          child: Icon(IconData(iconCode, fontFamily: 'MaterialIcons')),
-        ),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(_hpad * 1.5, 0, 0, _hpad * 2),
-            child: Text(_title, style: Theme.of(context).textTheme.titleMedium),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(left: _hpad * 2),
-            child: Text(_body, style: Theme.of(context).textTheme.bodyMedium),
-          ),
-        ),
-      ],
-    );
-  } */
   @override
   Widget build(BuildContext context) {
     return Center(

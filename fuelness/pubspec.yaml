@@ -29,6 +29,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  pedometer: ^3.0.0
+  permission_handler: ^9.2.0
+  sqflite: ^2.0.2
+  path: ^1.8.0
 
 
   # The following adds the Cupertino Icons font to your application.

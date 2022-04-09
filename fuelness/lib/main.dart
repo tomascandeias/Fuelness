@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:homework/screens/activities/activities.dart';
 import 'package:homework/screens/greetings/welcome_page.dart';
-import 'package:homework/screens/steps/weekly_steps_screen.dart';
+import 'package:homework/screens/steps/step_counter.dart';
+import 'package:homework/screens/weekly_steps/weekly_steps_screen.dart';
 import 'package:homework/style.dart';
 
 import 'screens/steps/daily_steps_screen.dart';
@@ -54,7 +55,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
   final _pageOptions = [
-    DailyStepsScreen(),
+    StepCounter(),
     WeeklyStepsScreen(),
     Activities(),
   ];

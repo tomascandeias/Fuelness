@@ -3,7 +3,6 @@ import 'package:homework/models/steps_per_day.dart';
 import 'package:homework/screens/activities/text_section.dart';
 import 'package:homework/screens/steps/daily_steps.dart';
 import 'package:homework/screens/steps/text_section_with_icon.dart';
-import 'package:homework/screens/steps/weekly_steps_chart.dart';
 
 class DailyStepsScreen extends StatelessWidget {
   @override

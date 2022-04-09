@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class StepsPerDay {
+  final int id;
   final DateTime date;
   final int numberOfSteps;
 
-  StepsPerDay(this.date, this.numberOfSteps);
+  const StepsPerDay(
+      {required this.id, required this.date, required this.numberOfSteps});
 
+/* 
   static List<StepsPerDay> fetchAll() {
     return [
       StepsPerDay(DateTime.utc(2022, 3, 17), 6380),
@@ -32,5 +35,5 @@ class StepsPerDay {
 
   static double stepsToKm(StepsPerDay steps) {
     return (steps.numberOfSteps / 1312.33595801);
-  }
+  } */
 }
