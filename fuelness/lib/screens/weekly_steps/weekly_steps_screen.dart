@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:homework/models/steps_per_day.dart';
-import 'package:homework/screens/steps/daily_steps.dart';
 import 'package:homework/screens/weekly_steps/weekly_steps_chart.dart';
 
 class WeeklyStepsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final stepsData = StepsPerDay.fetchAll();
 
     return Scaffold(
         body: Container(

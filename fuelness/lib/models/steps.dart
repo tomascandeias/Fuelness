@@ -1,14 +1,43 @@
-import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-class StepsPerDay {
-  final int id;
-  final DateTime date;
-  final int numberOfSteps;
+part 'steps.g.dart';
 
-  const StepsPerDay(
-      {required this.id, required this.date, required this.numberOfSteps});
+@HiveType(typeId: 1)
+class Steps {
+  @HiveField(0)
+  final DateTime _date;
 
-/* 
+  @HiveField(1)
+  int numberOfSteps;
+
+  @HiveField(2)
+  double? _calories;
+
+  @HiveField(3)
+  double? _km;
+
+  Steps(this._date, this.numberOfSteps);
+
+  void setSteps(int steps){
+    numberOfSteps = steps;
+    _calories = calories;
+    _km = km;
+  }
+
+
+  DateTime get date => _date;
+
+  double get calories => numberOfSteps * 0.063 ;
+
+  double get km => numberOfSteps * 1312.33595801;
+
+  String valuesToString() {
+    return '$numberOfSteps,$calories,$km';
+  }
+
+
+
+/*
   static List<StepsPerDay> fetchAll() {
     return [
       StepsPerDay(DateTime.utc(2022, 3, 17), 6380),

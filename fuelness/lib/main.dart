@@ -1,15 +1,21 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:homework/db/DatabaseHandler.dart';
+import 'package:homework/models/steps.dart';
+import 'package:homework/screens/steps/daily_steps_screen.dart';
 import 'package:homework/screens/activities/activities.dart';
 import 'package:homework/screens/greetings/welcome_page.dart';
-import 'package:homework/screens/steps/step_counter.dart';
 import 'package:homework/screens/weekly_steps/weekly_steps_screen.dart';
 import 'package:homework/style.dart';
 
-import 'screens/steps/daily_steps_screen.dart';
 
-void main() {
+Future<void> main() async {
+  Hive.initFlutter();
+  Hive.registerAdapter(StepsAdapter());
+  await Hive.openBox("steps");
   runApp(const MyApp());
 }
 
@@ -43,6 +49,7 @@ ThemeData _theme() {
   );
 }
 
+
 // Bottom navigation bar
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
@@ -55,7 +62,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
   final _pageOptions = [
-    StepCounter(),
+    DailySteps(),
     WeeklyStepsScreen(),
     Activities(),
   ];

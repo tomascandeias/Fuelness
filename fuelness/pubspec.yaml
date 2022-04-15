@@ -31,8 +31,10 @@ dependencies:
     sdk: flutter
   pedometer: ^3.0.0
   permission_handler: ^9.2.0
-  sqflite: ^2.0.2
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
   path: ^1.8.0
+  path_provider: any
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,6 +45,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  hive_generator: ^1.1.2
+  build_runner: ^2.0.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

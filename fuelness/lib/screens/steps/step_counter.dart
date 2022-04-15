@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:homework/db/DatabaseHandler.dart';
 import 'dart:async';
 
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../models/steps.dart';
 
 String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
@@ -18,16 +22,29 @@ class _MyAppState extends State<StepCounter> {
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
 
+  late final Box box;
+  var db = DatabaseHandler.instance;
+
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    box = Hive.box("steps");
   }
 
+
+  @override
+  void dispose() {
+    Hive.close();
+  }
+
+  // Update set count to db
   void onStepCount(StepCount event) {
     print(event);
     setState(() {
       _steps = event.steps.toString();
+      Steps steps = Steps(DateTime.now().toUtc(), event.steps);
+      box.put(steps.date.toUtc(), steps);
     });
   }
 

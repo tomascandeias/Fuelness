@@ -1,13 +1,42 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
-import 'package:homework/models/steps_per_day.dart';
-import 'package:homework/screens/activities/text_section.dart';
-import 'package:homework/screens/steps/daily_steps.dart';
+import 'package:hive/hive.dart';
+import 'package:homework/db/DatabaseHandler.dart';
 import 'package:homework/screens/steps/text_section_with_icon.dart';
 
-class DailyStepsScreen extends StatelessWidget {
+import '../../models/steps.dart';
+import 'package:homework/main.dart';
+
+
+class DailySteps extends StatefulWidget {
+  @override
+  _DailyStepsState createState() => _DailyStepsState();
+}
+
+
+class _DailyStepsState extends State<DailySteps> {
+  static const double _hpad = 16;
+
+  var db = DatabaseHandler.instance;
+  late final Box box;
+  late Steps steps;
+
+  @override
+  void initState() {
+    super.initState();
+    box = Hive.box("steps");
+    steps = box.get(DateTime.now().toUtc()) ?? Steps(DateTime.now().toUtc(), 0);
+  }
+
+
+  @override
+  void dispose() {
+    Hive.close();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final stepsData = StepsPerDay.fetchAll();
 
     return Scaffold(
         body: Container(
@@ -19,7 +48,21 @@ class DailyStepsScreen extends StatelessWidget {
             )),
             child: Column(
               children: [
-                DailySteps(stepsData[stepsData.length - 1]),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.fromLTRB(0, _hpad * 3, 0, _hpad * 3),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("${steps.date.day}/${steps.date.month}/${steps.date.year}",
+                                style: Theme.of(context).appBarTheme.titleTextStyle),
+                          ],
+                        ))
+                  ],
+                ),
                 Container(
                     width: 190.0,
                     height: 190.0,
@@ -30,16 +73,9 @@ class DailyStepsScreen extends StatelessWidget {
                             image:
                                 AssetImage("assets/images/heart_beat.gif")))),
                 const SizedBox(height: 50),
-                TextSectionWithIcon(
-                    0xf32c,
-                    stepsData[stepsData.length - 1].numberOfSteps.toString(),
-                    "steps"),
-                TextSectionWithIcon(0xe392, "564", "Cal"),
-                TextSectionWithIcon(
-                    0xe3ab,
-                    StepsPerDay.stepsToKm(stepsData[stepsData.length - 1])
-                        .toStringAsFixed(2),
-                    "Km")
+                TextSectionWithIcon(0xf32c, steps.numberOfSteps.toString(), "steps"),
+                TextSectionWithIcon(0xe392, steps.calories.toString(), "Cal"),
+                TextSectionWithIcon(0xe3ab, steps.km.toStringAsFixed(2), "Km")
               ],
             )));
   }

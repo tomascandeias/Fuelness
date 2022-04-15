@@ -1,21 +1,33 @@
 PODS:
   - Flutter (1.0.0)
+  - path_provider_ios (0.0.1):
+    - Flutter
   - pedometer (0.0.1):
+    - Flutter
+  - permission_handler_apple (9.0.4):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - pedometer (from `.symlinks/plugins/pedometer/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
   pedometer:
     :path: ".symlinks/plugins/pedometer/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
 
 SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   pedometer: 381969883680ade42559782cc41a3bbd453d8234
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 
