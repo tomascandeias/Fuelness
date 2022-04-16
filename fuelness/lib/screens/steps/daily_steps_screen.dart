@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:homework/db/DatabaseHandler.dart';
 import 'package:homework/screens/steps/text_section_with_icon.dart';
+import 'package:pedometer/pedometer.dart';
 
 import '../../models/steps.dart';
 import 'package:homework/main.dart';
@@ -19,20 +20,70 @@ class _DailyStepsState extends State<DailySteps> {
   static const double _hpad = 16;
 
   var db = DatabaseHandler.instance;
-  late final Box box;
-  late Steps steps;
+  Steps steps = Steps(DateTime.now().toUtc(), 3);
+
+  // pedometer vars
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
+  String _status = '?', _steps = '?';
 
   @override
   void initState() {
     super.initState();
-    box = Hive.box("steps");
-    steps = box.get(DateTime.now().toUtc()) ?? Steps(DateTime.now().toUtc(), 0);
+    initPlatformState();
+
+    print("DailySteps initState()");
+
+    //print(DateTime.now().toUtc());
+    //print(DateTime.now().toUtc().toString());
+    //print(DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    //db.setNumberOfSteps(420);
+
+    steps = db.getDailySteps(DateTime.now());
+
+    print("DailySteps end initState()");
   }
 
+  void onStepCount(StepCount event) {
+    print(event);
+    setState(() {
+      _steps = event.steps.toString();
+      db.setNumberOfSteps(event.steps);
+    });
+  }
 
-  @override
-  void dispose() {
-    Hive.close();
+  void onPedestrianStatusChanged(PedestrianStatus event) {
+    print(event);
+    setState(() {
+      _status = event.status;
+    });
+  }
+
+  void onPedestrianStatusError(error) {
+    print('onPedestrianStatusError: $error');
+    setState(() {
+      _status = 'Pedestrian Status not available';
+    });
+    print(_status);
+  }
+
+  void onStepCountError(error) {
+    print('onStepCountError: $error');
+    setState(() {
+      _steps = 'Step Count not available';
+    });
+  }
+
+  void initPlatformState() {
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    _pedestrianStatusStream
+        .listen(onPedestrianStatusChanged)
+        .onError(onPedestrianStatusError);
+
+    _stepCountStream = Pedometer.stepCountStream;
+    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+
+    if (!mounted) return;
   }
 
   @override

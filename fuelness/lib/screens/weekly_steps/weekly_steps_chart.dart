@@ -1,7 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import '../../db/DatabaseHandler.dart';
+import 'package:homework/db/DatabaseHandler.dart';
 import '../../models/steps.dart';
 
 class WeeklyStepsChart extends StatelessWidget {
@@ -28,15 +28,9 @@ class WeeklyStepsChart extends StatelessWidget {
   }
 
   static List<charts.Series<Steps, String>> getStepsData() {
-    List<Steps> weeklySteps = [];
-    /*
-    final Box box = Hive.openBox("steps");
-    for (int i=6; i>0; i--){
-      weeklySteps.add(box.get(DateTime.now().toUtc().subtract(Duration(days: i))) ?? Steps(DateTime.now().toUtc(), 0) );
-    }
+    var db = DatabaseHandler.instance;
+    List<Steps> weeklySteps = db.getWeeklySteps(DateTime.now());
 
-    weeklySteps.add(box.get(date.toUtc().toString()) ?? Steps(date, 0));
-    */
     return [
       charts.Series<Steps, String>(
         id: 'Steps',

@@ -13,9 +13,11 @@ import 'package:homework/style.dart';
 
 
 Future<void> main() async {
-  Hive.initFlutter();
+  await Hive.initFlutter();
   Hive.registerAdapter(StepsAdapter());
-  await Hive.openBox("steps");
+  if (!Hive.isBoxOpen("steps")) {
+    var box = await Hive.openBox("steps");
+  }
   runApp(const MyApp());
 }
 

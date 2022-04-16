@@ -29,13 +29,11 @@ class Steps {
 
   double get calories => numberOfSteps * 0.063 ;
 
-  double get km => numberOfSteps * 1312.33595801;
+  double get km => numberOfSteps / 1312.33595801;
 
   String valuesToString() {
     return '$numberOfSteps,$calories,$km';
   }
-
-
 
 /*
   static List<StepsPerDay> fetchAll() {
