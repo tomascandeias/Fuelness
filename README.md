@@ -1,7 +1,8 @@
 ## Application Context 
-There are many mobile applications regarding fitness and mental health, but it’s difficult to find one application that has special attention to both. But the hope isn’t lost, and our application comes to help you stay fit and, at the same time, keep your mind clean.
-The intention of this application comes when there is an undeniable boom in fitness routine whilst mental health is becoming more and more an important matter of our daily lives.
-That being said, we come to address both problems where they can intuitively connect with each other, either by promoting healthier lifestyles or even promoting good and positive energies to visitors.
+There are many mobile applications regarding fitness and mental health, but it’s difficult to find one application that has special attention to both. But the hope isn’t lost, and our application comes to help you stay fit and, at the same time, keep your mind clean.  
+The intention of this application comes when there is an undeniable boom in fitness routine whilst mental health is becoming more and more an important matter of our daily lives.  
+That being said, we come to address both problems where they can intuitively connect with each other, either by promoting healthier lifestyles or even promoting good and positive energies to visitors.  
+  
 Fuelness comes from the combination of two different words, fuel and fullness. Fuel represents the strength and energy that you need for your both physical and mental health. Fulness, remembers the calm, relaxed and positive posture that you should have when facing a problem in your life. <br>
 
 > “Health is a state of complete harmony of the body, mind and spirit. When one is free from physical disabilities and mental distractions, the gates of the soul open.” -  B.K.S. Iyengar
