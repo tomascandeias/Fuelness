@@ -18,15 +18,16 @@ class DatabaseHandler{
 
   Steps getDailySteps(DateTime date) {
     var box = Hive.box(boxSteps);
-    return box.get(getDate(date)) ?? Steps(date, 5);
+    return box.get(getDate(date)) ?? Steps(date, 0);
   }
 
   List<Steps> getWeeklySteps(DateTime date) {
+    print("getWeeklySteps()");
     var box = Hive.box(boxSteps);
     List<Steps> ret = [];
 
     for (int i=6; i>0; i--){
-      ret.add(box.get(getDate(date.subtract(Duration(days: i)))) ?? Steps(DateTime.now().toUtc(), 0) );
+      ret.add(box.get(getDate(date.subtract(Duration(days: i)))) ?? Steps(date.subtract(Duration(days: i)), 0) );
     }
 
     ret.add(box.get(getDate(date)) ?? Steps(date, 0));

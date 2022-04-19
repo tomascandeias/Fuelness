@@ -28,8 +28,12 @@ class WeeklyStepsChart extends StatelessWidget {
   }
 
   static List<charts.Series<Steps, String>> getStepsData() {
+    print("getStepsData()");
     var db = DatabaseHandler.instance;
     List<Steps> weeklySteps = db.getWeeklySteps(DateTime.now());
+    for (int i=0; i<weeklySteps.length; i++){
+      print(weeklySteps[i].date.toUtc().toString() + "\t" + weeklySteps[i].valuesToString());
+    }
 
     return [
       charts.Series<Steps, String>(

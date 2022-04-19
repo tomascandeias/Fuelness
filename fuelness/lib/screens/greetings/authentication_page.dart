@@ -57,7 +57,7 @@ class AuthenticationScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 1.5,
+              height: MediaQuery.of(context).size.height / 1.75,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -71,33 +71,62 @@ class AuthenticationScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 45),
+                    const Text(
+                        "Fuelness credentials verification",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.red,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                     userInput('Email', TextInputType.emailAddress),
                     userInput('Password', TextInputType.visiblePassword),
-                    Container(
-                      height: 55,
-                      padding:
-                          const EdgeInsets.only(top: 5, left: 70, right: 70),
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        color: Colors.red,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const MyStatefulWidget()));
-                        },
-                        child: const Text(
-                          'Sign in',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                          color: Colors.red,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const MyStatefulWidget()));
+                          },
+                          child: const Text(
+                            'Sign up',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                          color: Colors.red,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    const MyStatefulWidget()));
+                          },
+                          child: const Text(
+                            'Log in',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ]
                     ),
                     const SizedBox(height: 20),
                   ],
