@@ -1,13 +1,11 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:homework/db/DatabaseHandler.dart';
 import 'package:homework/screens/steps/text_section_with_icon.dart';
 import 'package:pedometer/pedometer.dart';
 
 import '../../models/steps.dart';
-import 'package:homework/main.dart';
 
 
 class DailySteps extends StatefulWidget {
@@ -37,11 +35,9 @@ class _DailyStepsState extends State<DailySteps> {
     //print(DateTime.now().toUtc());
     //print(DateTime.now().toUtc().toString());
     //print(DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    //db.setNumberOfSteps(420);
+    //db.setNumberOfSteps(0);
 
     steps = db.getDailySteps(DateTime.now());
-
-    print("DailySteps end initState()");
   }
 
   void onStepCount(StepCount event) {
@@ -88,7 +84,6 @@ class _DailyStepsState extends State<DailySteps> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         body: Container(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 50),
