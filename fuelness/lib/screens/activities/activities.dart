@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homework/models/activity.dart';
 import 'package:homework/screens/activities/activity_detail.dart';
+import 'package:homework/screens/activities/activity_view.dart';
 
 class Activities extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class Activities extends StatelessWidget {
     //Navigator.pushNamed(context, LocationDetailRoute, arguments: {"id": id});
     Navigator.push(
       context,
-      MaterialPageRoute(builder: ((context) => ActivityDetail(id))),
+      MaterialPageRoute(builder: ((context) => ActivityView())),
     );
   }
 }
