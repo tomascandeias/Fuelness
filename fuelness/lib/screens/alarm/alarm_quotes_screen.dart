@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:homework/screens/alarm/alarm_widget.dart';
 import 'package:homework/screens/alarm/clock_widget.dart';
-import 'package:homework/models/data.dart';
+import 'package:homework/models/alarm.dart';
+import 'package:homework/screens/alarm/dailymsg_screen.dart';
 import 'package:homework/screens/alarm/notifications.dart';
-import 'package:homework/screens/alarm/statistic_screen.dart';
+import 'package:homework/services/ApiRequests.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 class AlarmWithDailyQuotes extends StatefulWidget {
@@ -27,9 +28,9 @@ class _AlarmWithDailyQuotesState extends State<AlarmWithDailyQuotes> {
       NotificationApi.onNotifications.stream.listen(onClickedNotification);
 
   void onClickedNotification(String? payload) {
-    openedAt.add(add(payload));
+    //openedAt.add(add(payload));
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => StatisticScreen(payload: payload),
+      builder: (context) => DailyMsg(payload!),
     ));
   } // Go to Statistic Page Function
 
@@ -168,16 +169,22 @@ class _AlarmWithDailyQuotesState extends State<AlarmWithDailyQuotes> {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                NotificationApi.showScheduledNotification(
-                    id: _AmPm(hour) + minute,
-                    title: 'Your Time has Come',
-                    body: 'Right now at, ' +
-                        hour.toString().padLeft(2, '0') +
-                        ' : ' +
-                        minute.toString().padLeft(2, '0'),
-                    payload: minute.toString(),
-                    when: DateTime(DateTime.now().year, DateTime.now().month,
-                        DateTime.now().day, _AmPm(hour), minute));
+                var api = ApiRequests.instance;
+                api.makePostRequest().then((String result){
+                  var msg = result.split("-");
+                  NotificationApi.showScheduledNotification(
+                      id: _AmPm(hour) + minute,
+                      title: msg[1] == "null" ?
+                          "Right now at" : msg[1] + ", right now at " +
+                          hour.toString().padLeft(2, '0') +
+                          ' : ' +
+                          minute.toString().padLeft(2, '0'),
+                      body: msg[0],
+                      payload: result,
+                      when: DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, _AmPm(hour), minute));
+                });
+
                 setState(() {
                   addAlarm();
                 });

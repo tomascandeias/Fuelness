@@ -122,8 +122,7 @@ class ClockPainter extends CustomPainter {
 
     for(int i = 0; i<12; i++) {
       double degree = 360 / 12 * i;
-      paint.color = (i*30 == hourseDegree && hourseDegree == minuteDegree) ? const Color(
-          0xFF32BB00) : Colors.transparent;
+      paint.color = (i*30 == hourseDegree && hourseDegree == minuteDegree) ? Colors.orange : Colors.transparent;
 
       int distance =  13;
       paint.strokeWidth = (i % 5 == 0)?7:5;

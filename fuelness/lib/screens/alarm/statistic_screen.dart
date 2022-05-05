@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:homework/models/data.dart';
+import 'package:homework/models/alarm.dart';
 
 class StatisticScreen extends StatelessWidget {
   final String? payload;

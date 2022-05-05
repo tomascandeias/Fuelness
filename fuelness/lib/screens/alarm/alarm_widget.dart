@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:homework/screens/alarm/clock_painter.dart';
-import 'package:homework/models/data.dart';
+import 'package:homework/models/alarm.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 int minute = 0;

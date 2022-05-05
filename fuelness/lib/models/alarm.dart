@@ -1,3 +1,5 @@
+
+
 class Alarm {
   int hour;
   int minute;
@@ -12,7 +14,7 @@ class Alarm {
 }
 
 List<Alarm> alarmList = [
-  Alarm(hour: 10, minute: 24, isAm: true, isActive: true),
+  Alarm(hour: 8, minute: 0, isAm: true, isActive: true),
 ];
 
 Alarm deleteAlarm(int index) {
