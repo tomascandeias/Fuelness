@@ -35,6 +35,15 @@ dependencies:
   hive_flutter: ^1.1.0
   path: ^1.8.0
   path_provider: any
+  http:
+  flutter_local_notifications:
+  rxdart:
+  flutter_alarm_clock:
+  sleek_circular_slider: ^2.0.1
+  vector_math: ^2.1.1
+  flutter_native_timezone: ^2.0.0
+  fl_chart: ^0.40.6
+  flutter_svg: ^1.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
