@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:homework/screens/alarm/clock_painter.dart';
 
-class Clock extends StatefulWidget {
+class ClockWidget extends StatefulWidget {
   @override
-  _ClockState createState() => _ClockState();
+  _ClockWidgetState createState() => _ClockWidgetState();
 }
 
-class _ClockState extends State<Clock> {
+class _ClockWidgetState extends State<ClockWidget> {
 
   int secondclock = 0;
   int minuteclock = 0;
@@ -74,7 +74,7 @@ class _ClockState extends State<Clock> {
                     width: 65,
                     child: Text((_isAm == true) ? 'AM' : 'PM',
                       style: TextStyle(
-                        color: (_isAm == true) ? Colors.red : Colors.blueAccent,
+                        color: (_isAm == true) ? Colors.white : Colors.white,
                       ),
                     ),
                   ),

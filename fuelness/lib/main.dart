@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:homework/models/steps.dart';
-import 'package:homework/screens/alarm/main_screen.dart';
+import 'package:homework/screens/alarm/alarm_quotes_screen.dart';
 import 'package:homework/screens/steps/daily_steps_screen.dart';
 import 'package:homework/screens/greetings/welcome_page.dart';
 import 'package:homework/screens/weekly_steps/weekly_steps_screen.dart';
@@ -66,7 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final _pageOptions = [
     DailySteps(),
     WeeklyStepsScreen(),
-    MainScreen(),
+    AlarmWithDailyQuotes(),
   ];
 
   void _onItemTapped(int index) {

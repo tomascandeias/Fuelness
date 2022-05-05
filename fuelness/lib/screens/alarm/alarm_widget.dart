@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:homework/screens/alarm/clock_painter.dart';
-import 'package:homework/screens/alarm/data.dart';
+import 'package:homework/models/data.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 int minute = 0;
@@ -11,22 +11,21 @@ int hour = 0;
 bool isAm = true;
 bool isActive = true;
 
-
-class AlarmChange extends StatefulWidget {
-  _AlarmChangeState createState() => _AlarmChangeState();
+class AlarmWidget extends StatefulWidget {
+  @override
+  _AlarmWidgetState createState() => _AlarmWidgetState();
 }
 
-class _AlarmChangeState extends State<AlarmChange> {
-
+class _AlarmWidgetState extends State<AlarmWidget> {
   late Timer timer;
   int secondclock = 0;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       final now = DateTime.now();
-      if(mounted) {
+      if (mounted) {
         setState(() {
           secondclock = now.second;
         });
@@ -54,8 +53,7 @@ class _AlarmChangeState extends State<AlarmChange> {
                         second: secondclock,
                         minute: minute,
                         hour: hour,
-                        isAM: isAm
-                    ),
+                        isAM: isAm),
                   ),
                 ),
                 Container(
@@ -67,7 +65,7 @@ class _AlarmChangeState extends State<AlarmChange> {
                     min: 0,
                     max: (isActive == true) ? 12 : 60,
                     onChange: (value) {
-                      if (isActive == true ) {
+                      if (isActive == true) {
                         setState(() {
                           hour = value.toInt();
                         });
@@ -88,16 +86,16 @@ class _AlarmChangeState extends State<AlarmChange> {
                           shadowColor: Colors.transparent,
                           trackColor: Colors.transparent,
                           dynamicGradient: false,
-                        )
-                    ),
+                        )),
                     innerWidget: (value) {
                       return Center(
                           child: Text(
-                            hour.toString().padLeft(2, '0') + ' : '
-                                + minute.toString().padLeft(2, '0'),
-                            style: const TextStyle(fontSize: 24, color: Colors.white),
-                          )
-                      );
+                        hour.toString().padLeft(2, '0') +
+                            ' : ' +
+                            minute.toString().padLeft(2, '0'),
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ));
                     },
                   ),
                 ),
@@ -122,12 +120,12 @@ class _AlarmChangeState extends State<AlarmChange> {
                             alignment: Alignment.topCenter,
                             height: 30,
                             width: 65,
-                            child: Text((isActive == true)
-                                ? 'Hour' : 'Minute',
+                            child: Text(
+                              (isActive == true) ? 'Hour' : 'Minute',
                               style: TextStyle(
                                   color: (isActive == true)
-                                      ? const Color(0xFF0031EC) : const Color(0xffffdd00)
-                              ),
+                                      ? Colors.white
+                                      : Colors.white),
                             ),
                           ),
                         ),
@@ -142,11 +140,12 @@ class _AlarmChangeState extends State<AlarmChange> {
                           alignment: Alignment.bottomCenter,
                           height: 30,
                           width: 65,
-                          child: Text((isAm == true)
-                              ? 'AM' : 'PM',
+                          child: Text(
+                            (isAm == true) ? 'AM' : 'PM',
                             style: TextStyle(
                               color: (isAm == true)
-                                  ? Colors.red : Colors.blueAccent,
+                                  ? Colors.red
+                                  : Colors.red,
                             ),
                           ),
                         ),
@@ -164,10 +163,6 @@ class _AlarmChangeState extends State<AlarmChange> {
 }
 
 void addAlarm() {
-  return alarmList.insert(0,
-      Alarm(
-          hour: hour,
-          minute: minute,
-          isAm: isAm,
-          isActive: true));
+  return alarmList.insert(
+      0, Alarm(hour: hour, minute: minute, isAm: isAm, isActive: true));
 }
