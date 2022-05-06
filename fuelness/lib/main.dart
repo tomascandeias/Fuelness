@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:homework/models/steps.dart';
 import 'package:homework/screens/alarm/alarm_quotes_screen.dart';
+import 'package:homework/screens/private_journal/private_journal.dart';
 import 'package:homework/screens/steps/daily_steps_screen.dart';
 import 'package:homework/screens/greetings/welcome_page.dart';
 import 'package:homework/screens/weekly_steps/weekly_steps_screen.dart';
 import 'package:homework/style.dart';
-
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -51,7 +52,6 @@ ThemeData _theme() {
   );
 }
 
-
 // Bottom navigation bar
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
@@ -61,44 +61,34 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-
+  int selectedPage = 0;
   final _pageOptions = [
     DailySteps(),
-    WeeklyStepsScreen(),
+    WeeklySteps(),
     AlarmWithDailyQuotes(),
+    PrivateJournal(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _pageOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions_run),
-            label: 'Daily',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_graph),
-            label: 'Weekly',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Guide',
-          ),
+      body: _pageOptions[selectedPage],
+      bottomNavigationBar: ConvexAppBar(
+        backgroundColor: Colors.amber[800],
+        style: TabStyle.titled,
+        activeColor: Colors.white,
+        items: const [
+          TabItem(icon: Icons.directions_run, title: 'Daily'),
+          TabItem(icon: Icons.auto_graph, title: 'Weekly'),
+          TabItem(icon: Icons.alarm, title: 'Alarm'),
+          TabItem(icon: Icons.book, title: 'Journal'),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+        initialActiveIndex: 0, //optional, default as 0
+        onTap: (int i) {
+          setState(() {
+            selectedPage = i;
+          });
+        },
       ),
     );
   }

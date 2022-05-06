@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homework/screens/weekly_steps/weekly_steps_chart.dart';
 
-class WeeklyStepsScreen extends StatelessWidget {
+class WeeklySteps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 

@@ -124,8 +124,8 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                               (isActive == true) ? 'Hour' : 'Minute',
                               style: TextStyle(
                                   color: (isActive == true)
-                                      ? Colors.white
-                                      : Colors.white),
+                                      ? Colors.red
+                                      : Colors.red),
                             ),
                           ),
                         ),
