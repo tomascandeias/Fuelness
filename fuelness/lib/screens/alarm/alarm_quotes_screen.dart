@@ -151,10 +151,10 @@ class _AlarmWithDailyQuotesState extends State<AlarmWithDailyQuotes> {
         ),
       ),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: Colors.amber[800],
         height: 50,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               icon: (_isActive == true)
