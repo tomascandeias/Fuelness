@@ -40,9 +40,12 @@ class _PrivateJournalState extends State<PrivateJournal> {
                       return Column(
                         children: <Widget>[
                           ListTile(
-                            title: Text("$title", style: const TextStyle(fontSize: 16),),
-                            subtitle: Text("$description", style: const TextStyle(fontSize: 13)),
-
+                            title: Text(
+                              "$title",
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            subtitle: Text("$description",
+                                style: const TextStyle(fontSize: 13)),
                           ),
                           const Divider(
                             height: 2.0,
@@ -81,9 +84,7 @@ class _PrivateJournalState extends State<PrivateJournal> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        style: const TextStyle(
-                          fontSize: 13
-                        ),
+                        style: const TextStyle(fontSize: 13),
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
@@ -98,9 +99,7 @@ class _PrivateJournalState extends State<PrivateJournal> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        style: const TextStyle(
-                            fontSize: 11
-                        ),
+                        style: const TextStyle(fontSize: 11),
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
@@ -114,8 +113,7 @@ class _PrivateJournalState extends State<PrivateJournal> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.amber[800]
-                        ),
+                            primary: Colors.amber[800]),
                         child: const Text('Add'),
                       )
                     ],
