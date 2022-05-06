@@ -5,6 +5,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:homework/models/steps.dart';
+import 'package:homework/screens/activities/activities.dart';
 import 'package:homework/screens/alarm/alarm_quotes_screen.dart';
 import 'package:homework/screens/private_journal/private_journal.dart';
 import 'package:homework/screens/steps/daily_steps_screen.dart';
@@ -65,6 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final _pageOptions = [
     DailySteps(),
     WeeklySteps(),
+    Activities(),
     AlarmWithDailyQuotes(),
     PrivateJournal(),
   ];
@@ -80,6 +82,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const [
           TabItem(icon: Icons.directions_run, title: 'Daily'),
           TabItem(icon: Icons.auto_graph, title: 'Weekly'),
+          TabItem(icon: Icons.fitness_center, title: 'Activities'),
           TabItem(icon: Icons.alarm, title: 'Alarm'),
           TabItem(icon: Icons.book, title: 'Journal'),
         ],
