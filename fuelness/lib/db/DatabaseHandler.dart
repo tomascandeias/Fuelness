@@ -16,6 +16,12 @@ class DatabaseHandler{
     box.put(getDate(steps.date), steps);
   }
 
+  void setNumberOfStepsWithDate(int numberOfSteps, DateTime date) {
+    var box = Hive.box(boxSteps);
+    Steps steps = Steps(date.toUtc(), numberOfSteps);
+    box.put(getDate(steps.date), steps);
+  }
+
   Steps getDailySteps(DateTime date) {
     var box = Hive.box(boxSteps);
     return box.get(getDate(date)) ?? Steps(date, 0);

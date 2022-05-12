@@ -34,7 +34,7 @@ dependencies:
   hive: ^2.1.0
   hive_flutter: ^1.1.0
   path: ^1.8.0
-  path_provider:
+  path_provider: ^2.0.10
   http:
   flutter_local_notifications:
   rxdart:
@@ -45,6 +45,10 @@ dependencies:
   fl_chart: ^0.40.6
   flutter_svg: ^1.0.3
   convex_bottom_bar:
+  equatable: ^2.0.3
+  bloc: ^8.0.3
+  flutter_bloc: ^8.0.1
+  provider: ^6.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -56,7 +60,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  hive_generator: ^1.1.2
+  hive_generator:
   build_runner: ^2.0.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
