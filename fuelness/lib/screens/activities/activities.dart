@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:homework/models/activity.dart';
 import 'package:homework/screens/activities/activity_detail.dart';
+import 'package:homework/screens/activities/activity_view.dart';
 
 class Activities extends StatelessWidget {
+  const Activities({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final activities = Activity.fetchAll();
@@ -38,6 +41,7 @@ class Activities extends StatelessWidget {
 
   _onActivityTap(BuildContext context, int id) {
     //Navigator.pushNamed(context, LocationDetailRoute, arguments: {"id": id});
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: ((context) => ActivityDetail(id))),
