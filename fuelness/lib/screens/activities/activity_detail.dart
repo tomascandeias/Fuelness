@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homework/models/activity.dart';
-import 'package:homework/screens/activities/image_banner.dart';
-import 'package:homework/screens/activities/text_section.dart';
+import 'package:homework/utils/image_banner.dart';
+import 'package:homework/utils/text_section.dart';
 
 class ActivityDetail extends StatelessWidget {
   final int _id;

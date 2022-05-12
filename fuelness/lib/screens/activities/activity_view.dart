@@ -9,7 +9,6 @@ class ActivityView extends StatefulWidget {
 }
 
 class _ActivityViewState extends State<ActivityView> {
-  final _isHours = true;
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countUp,
@@ -44,7 +43,6 @@ class _ActivityViewState extends State<ActivityView> {
     return Scaffold(
         body: Container(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 50),
-            height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/background.jpeg"),
@@ -59,96 +57,90 @@ class _ActivityViewState extends State<ActivityView> {
                     SizedBox(width: 120),
                     Icon(Icons.help, size: 45)
                   ]),
-                  const SizedBox(height: 65),
-                  Row(children: [
-                    ElevatedButton(
-                        onPressed: _seeRecords,
-                        style: ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 25),
-                            primary: Colors.red),
-                        child: const Text("See records"))
-                  ]),
+
                   const SizedBox(height: 150),
-                  Table(
-                    defaultColumnWidth: const FixedColumnWidth(10),
+                  Row(
                     children: [
-                      TableRow(children: [
-                        Column(
-                          children: const [
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(0, 20, 0, 5),
-                                child: Icon(Icons.timer, size: 40))
-                          ],
-                        ),
-                        Column(children: <Widget>[
-                          StreamBuilder<int>(
-                              stream: _stopWatchTimer.rawTime,
-                              initialData: _stopWatchTimer.rawTime.value,
-                              builder: (context, snapshot) {
-                                final val = snapshot.data!;
-                                final displayTime =
-                                    StopWatchTimer.getDisplayTime(val,
-                                        milliSecond: false);
-                                return Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 30, 10, 5),
-                                      child: Text(
-                                        displayTime,
-                                        style: const TextStyle(
-                                            fontSize: 27,
-                                            fontFamily: 'Helvetica',
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(90, 20, 0, 20),
+                          child: Icon(Icons.timer, size: 40)),
+                      Column(children: <Widget>[
+                        StreamBuilder<int>(
+                            stream: _stopWatchTimer.rawTime,
+                            initialData: _stopWatchTimer.rawTime.value,
+                            builder: (context, snapshot) {
+                              final val = snapshot.data!;
+                              final displayTime = StopWatchTimer.getDisplayTime(
+                                  val,
+                                  milliSecond: false);
+                              return Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(30, 5, 0, 0),
+                                    child: Text(
+                                      displayTime,
+                                      style: const TextStyle(
+                                          fontSize: 27,
+                                          fontFamily: 'Helvetica',
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ],
-                                );
-                              })
-                        ]),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                child: RaisedButton(
-                                  padding: const EdgeInsets.all(4),
-                                  color: Colors.redAccent,
-                                  shape: const StadiumBorder(),
-                                  onPressed: () async {
-                                    _stopWatchTimer.onExecute
-                                        .add(StopWatchExecute.start);
-                                  },
-                                  child: const Text(
-                                    'Start',
-                                    style: TextStyle(color: Colors.white),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                child: RaisedButton(
-                                  padding: const EdgeInsets.all(4),
-                                  color: Colors.orangeAccent,
-                                  shape: const StadiumBorder(),
-                                  onPressed: () async {
-                                    _stopWatchTimer.onExecute
-                                        .add(StopWatchExecute.stop);
-                                  },
-                                  child: const Text(
-                                    'Stop',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ])
+                                ],
+                              );
+                            })
                       ])
                     ],
                   ),
+                  Row(
+                    children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(80, 0, 10, 30),
+                              child: RaisedButton(
+                                padding: const EdgeInsets.all(4),
+                                color: Colors.redAccent,
+                                shape: const StadiumBorder(),
+                                onPressed: () async {
+                                  _stopWatchTimer.onExecute
+                                      .add(StopWatchExecute.start);
+                                },
+                                child: const Text(
+                                  'Start',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ]),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 30, 30),
+                            child: RaisedButton(
+                              padding: const EdgeInsets.all(4),
+                              color: Colors.orange,
+                              shape: const StadiumBorder(),
+                              onPressed: () async {
+                                _stopWatchTimer.onExecute
+                                    .add(StopWatchExecute.stop);
+                              },
+                              child: const Text(
+                                'Stop',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
                 ])));
   }
 
-  _seeRecords() {}
+  _seeRecords(BuildContext context) {
+
+  }
 }

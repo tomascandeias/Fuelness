@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:homework/db/DatabaseHandler.dart';
-import 'package:homework/screens/steps/text_section_with_icon.dart';
+import 'package:homework/utils/text_section_with_icon.dart';
 import 'package:pedometer/pedometer.dart';
 
 import '../../models/steps.dart';
