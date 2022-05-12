@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:homework/db/DatabaseHandler.dart';
 import 'package:homework/models/steps.dart';
-import 'package:homework/screens/activities/activity_menu.dart';
-import 'package:homework/screens/steps/daily_steps_screen.dart';
 import 'package:homework/screens/activities/activities.dart';
+import 'package:homework/screens/activities/activity_menu.dart';
 import 'package:homework/screens/alarm/alarm_quotes_screen.dart';
 import 'package:homework/screens/private_journal/private_journal.dart';
 import 'package:homework/screens/steps/daily_steps_screen.dart';
@@ -72,7 +71,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ActivityMenu(),
     AlarmWithDailyQuotes(),
     PrivateJournal(),
-
   ];
 
   @override

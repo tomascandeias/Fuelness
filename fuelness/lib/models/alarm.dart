@@ -1,5 +1,3 @@
-
-
 class Alarm {
   int hour;
   int minute;

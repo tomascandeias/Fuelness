@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:homework/utils/activity_info.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+
+import 'google_maps.dart';
+
+Future<Position> _getGeoLocationPosition() async {
+  Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
+  return position;
+}
 
 class ActivityView extends StatefulWidget {
   const ActivityView({Key? key}) : super(key: key);
@@ -23,6 +32,8 @@ class _ActivityViewState extends State<ActivityView> {
     },
   );
 
+  late List<Position> locations;
+
   @override
   void initState() {
     super.initState();
@@ -34,15 +45,14 @@ class _ActivityViewState extends State<ActivityView> {
     _stopWatchTimer.fetchStop.listen((value) => print('stop from stream'));
     _stopWatchTimer.fetchEnded.listen((value) => print('ended from stream'));
 
-    /// Can be set preset time. This case is "00:01.23".
-    // _stopWatchTimer.setPresetTime(mSec: 1234);
+    locations = [];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 50),
+            padding: const EdgeInsets.fromLTRB(10, 10, 5, 50),
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/background.jpeg"),
@@ -101,6 +111,12 @@ class _ActivityViewState extends State<ActivityView> {
                                 onPressed: () async {
                                   _stopWatchTimer.onExecute
                                       .add(StopWatchExecute.start);
+
+                                  _getGeoLocationPosition().then((Position result){
+                                    setState(() {
+                                      locations.add(result);
+                                    });
+                                  });
                                 },
                                 child: const Text(
                                   'Start',
@@ -120,6 +136,13 @@ class _ActivityViewState extends State<ActivityView> {
                               onPressed: () async {
                                 _stopWatchTimer.onExecute
                                     .add(StopWatchExecute.stop);
+
+                                _getGeoLocationPosition().then((Position result){
+                                  setState(() {
+                                    locations.add(result);
+                                    _seeMaps(context);
+                                  });
+                                });
                               },
                               child: const Text(
                                 'Stop',
@@ -128,11 +151,16 @@ class _ActivityViewState extends State<ActivityView> {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ])));
   }
 
-  _seeRecords(BuildContext context) {}
+  _seeMaps(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: ((context) => GoogleMaps(locations))),
+    );
+  }
 }

@@ -37,7 +37,7 @@ class _DailyStepsState extends State<DailySteps> {
     //print(DateTime.utc(DateTime.now().year, DateTime.now().month, DateTime.now().day));
     //db.setNumberOfSteps(0);
 
-    steps = db.getDailySteps(DateTime.now());
+    steps = db.getDailySteps(DateTime.now().toUtc());
     _steps = steps.numberOfSteps.toString();
   }
 
@@ -46,10 +46,9 @@ class _DailyStepsState extends State<DailySteps> {
     setState(() {
       _steps = event.steps.toString();
 
-      _steps = event.steps.toString();
       db.setNumberOfSteps(event.steps);
 
-      steps = db.getDailySteps(DateTime.now());
+      steps = db.getDailySteps(DateTime.now().toUtc());
     });
   }
 
@@ -125,7 +124,7 @@ class _DailyStepsState extends State<DailySteps> {
                                 AssetImage("assets/images/heart_beat.gif")))),
                 const SizedBox(height: 50),
                 TextSectionWithIcon(0xf32c, _steps, "steps"),
-                TextSectionWithIcon(0xe392, steps.calories.toStringAsFixed(2), "Cal"),
+                TextSectionWithIcon(0xe392, steps.calories.toStringAsFixed(1), "Cal"),
                 TextSectionWithIcon(0xe3ab, steps.km.toStringAsFixed(2), "Km")
               ],
             )));

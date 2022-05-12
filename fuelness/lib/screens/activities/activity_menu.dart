@@ -5,8 +5,6 @@ import 'package:homework/screens/activities/activity_view.dart';
 import 'activities.dart';
 
 class ActivityMenu extends StatelessWidget {
-  const ActivityMenu({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -30,8 +30,15 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <!-- TODO: Add your Google Maps API key here -->
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyBbnuGVzjwc-3otJ57eULAzkXN1qLT8d6s"/>
     </application>
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
 </manifest>
